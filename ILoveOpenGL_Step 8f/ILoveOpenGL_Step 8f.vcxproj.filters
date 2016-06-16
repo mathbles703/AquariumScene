@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="PlyLoader">
+      <UniqueIdentifier>{181a2d20-587e-4b63-b367-500b65c3464b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{cce2d3c4-2bff-41b0-baaf-fcf6cf32e1bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CShaderManager">
+      <UniqueIdentifier>{cfef59ef-da13-4181-9f99-4650ad117d91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CError">
+      <UniqueIdentifier>{bf059508-6d15-493d-a0fb-0ae471ab838a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GLTexture">
+      <UniqueIdentifier>{5a55ae5b-3009-42f4-8279-83986c818dc5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="chapter.4.1.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cVertex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cTriangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cMeshManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ply\CPlyFile5nt.cpp">
+      <Filter>PlyLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Ply\CPlyFile5nt_experimental.cpp">
+      <Filter>PlyLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Ply\CVector3f.cpp">
+      <Filter>PlyLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="CHRTimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ply\CStringHelper.cpp">
+      <Filter>PlyLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="CShaderManager\CGLShaderManager.cpp">
+      <Filter>CShaderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CShaderManager\CGLShaderManager_SHADER_VARIABLES.cpp">
+      <Filter>CShaderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CShaderManager\ShaderTypes.cpp">
+      <Filter>CShaderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CError\COpenGLError.cpp">
+      <Filter>CError</Filter>
+    </ClCompile>
+    <ClCompile Include="CError\CErrorLog.cpp">
+      <Filter>CError</Filter>
+    </ClCompile>
+    <ClCompile Include="cLightDesc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GLTexture\C24BitBMPpixel.cpp">
+      <Filter>GLTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="GLTexture\CTextureFromBMP.cpp">
+      <Filter>GLTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="GLTexture\CTextureManager.cpp">
+      <Filter>GLTexture</Filter>
+    </ClCompile>
+    <ClCompile Include="glutKeyboardCallback.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="globals.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cGameObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="cVertex.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cTriangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cGameObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="cMeshManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ply\CPlyFile5nt.h">
+      <Filter>PlyLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Ply\CPlyInfo.h">
+      <Filter>PlyLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Ply\CVector3f.h">
+      <Filter>PlyLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="CHRTimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ply\CStringHelper.h">
+      <Filter>PlyLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="CShaderManager\CGLShaderManager.h">
+      <Filter>CShaderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CShaderManager\IGLShaderManager.h">
+      <Filter>CShaderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CShaderManager\ShaderTypes.h">
+      <Filter>CShaderManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CError\COpenGLError.h">
+      <Filter>CError</Filter>
+    </ClInclude>
+    <ClInclude Include="CError\CErrorLog.h">
+      <Filter>CError</Filter>
+    </ClInclude>
+    <ClInclude Include="CError\CErrorLog.hpp">
+      <Filter>CError</Filter>
+    </ClInclude>
+    <ClInclude Include="cLightDesc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GLTexture\C24BitBMPpixel.h">
+      <Filter>GLTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="GLTexture\CTextureFromBMP.h">
+      <Filter>GLTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="GLTexture\CTextureManager.h">
+      <Filter>GLTexture</Filter>
+    </ClInclude>
+    <ClInclude Include="globals.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shaders\MultiLightsTextures.fragment.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="assets\shaders\MultiLightsTextures.vertex.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="assets\shaders\SimpleShader.fragment.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="assets\shaders\SimpleShader.vertex.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="assets\shaders\MultiLightsTextures.fragment.spot.glsl">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>
