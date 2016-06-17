@@ -55,7 +55,11 @@ uniform sampler2D texSamp2D_03;
 uniform sampler2D texSamp2D_04;
 uniform sampler2D texSamp2D_05;
 uniform sampler2D texSamp2D_06;
-uniform sampler2D texSamp2D_07;								
+uniform sampler2D texSamp2D_07;	
+uniform sampler2D texSamp2D_08;
+uniform sampler2D texSamp2D_09;
+uniform sampler2D texSamp2D_10;	
+uniform sampler2D texSamp2D_11;					
 								
 vec3 ADSLightModel( in vec3 myNormal, in vec3 myPosition, 
                     in vec3 matDiffuse, in vec3 matAmbient, in vec3 matSpec,

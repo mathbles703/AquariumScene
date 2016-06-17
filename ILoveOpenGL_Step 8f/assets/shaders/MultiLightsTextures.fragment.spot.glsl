@@ -59,7 +59,7 @@ uniform bool bUseTextureMaterials;
 uniform bool bUseTexturesNoLighting;		// Does not use lighting
 	
 // Our 8 2D samplers (which is a lot, considering what we know at this point)	
-const int NUMBEROFSAMPLERS = 8;	// Used later in the shader							
+const int NUMBEROFSAMPLERS = 12;	// Used later in the shader							
 uniform sampler2D texSamp2D_00;		// Texture unit 0 (GL_TEXTURE0)
 uniform sampler2D texSamp2D_01;		// GL_SAMPLER_2D
 uniform sampler2D texSamp2D_02;		
@@ -68,6 +68,10 @@ uniform sampler2D texSamp2D_04;
 uniform sampler2D texSamp2D_05;
 uniform sampler2D texSamp2D_06;
 uniform sampler2D texSamp2D_07;				// Transparency layer
+uniform sampler2D texSamp2D_08;
+uniform sampler2D texSamp2D_09;
+uniform sampler2D texSamp2D_10;
+uniform sampler2D texSamp2D_11;
 
 uniform float textureMixRatios[NUMBEROFSAMPLERS];
 
@@ -211,8 +215,11 @@ void main(void)
 		texColours[5] = texture(texSamp2D_05, ex_UV_x2.xy).rgb;
 		texColours[6] = texture(texSamp2D_06, ex_UV_x2.xy).rgb;
 		texColours[7] = texture(texSamp2D_07, ex_UV_x2.xy).rgb;
+		texColours[8] = texture(texSamp2D_08, ex_UV_x2.xy).rgb;
+		texColours[9] = texture(texSamp2D_09, ex_UV_x2.xy).rgb;
+		texColours[10] = texture(texSamp2D_10, ex_UV_x2.xy).rgb;
+		texColours[11] = texture(texSamp2D_11, ex_UV_x2.xy).rgb;
 
-		
 		vec3 texColour = vec3(0.0f, 0.0f, 0.0f);
 		// Now we combine the textures. There's trade-offs here, of course... 
 		for ( int index = 0; index < NUMBEROFSAMPLERS; index++ )

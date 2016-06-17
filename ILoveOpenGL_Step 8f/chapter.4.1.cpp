@@ -79,7 +79,7 @@ GLint UniLoc_bUseDiscardMask = 0;
 // NOTE: we are using an array here, but you CAN'T have sampler arrays
 //	in this way inside the shader. There are things called "texture arrays",
 //	but they are NOT the same thing at all. 
-static const unsigned int NUMBEROF2DSAMPLERS = 8;
+static const unsigned int NUMBEROF2DSAMPLERS = 12;
 GLint UniLoc_texSampler2D[NUMBEROF2DSAMPLERS] = {0};
 GLint UniLoc_texMix[NUMBEROF2DSAMPLERS] = {0};
 
@@ -513,19 +513,16 @@ bool AssignTextureUnitsSimple(void)
 	// Or something like this...
 	SetTextureBinding( "glass.bmp", GL_TEXTURE0, 0 );
 	SetTextureBinding( "Free_Texture_Digital_08.preview_square_powOf2.bmp", GL_TEXTURE1, 1 );
-	SetTextureBinding( "ttt-03_square_powOf2.bmp", GL_TEXTURE2, 2 );
+	SetTextureBinding( "rock.bmp", GL_TEXTURE2, 2 );
 	SetTextureBinding( "BlueWhale.bmp", GL_TEXTURE3, 3 );
-	// Set the rest to pure white... Why?? We'll see, soon
 	SetTextureBinding( "sand.bmp", GL_TEXTURE4, 4 );
-
 	SetTextureBinding( "TropicalFish01.bmp", GL_TEXTURE5, 5 );
 	SetTextureBinding( "TropicalFish03.bmp", GL_TEXTURE6, 6 );
-
-	//	SetTextureBinding( "WhiteSquare128x128.bmp", GL_TEXTURE7, 7 );
-	//SetTextureBinding( "Fence_Mask.bmp", GL_TEXTURE7, 7 );
 	SetTextureBinding( "TropicalFish05.bmp", GL_TEXTURE7, 7 );			// <-- "Mask" texture
-	//SetTextureBinding( "13982137-Fiery-Explosion-Seamless-Texture-Tile-Stock-Photo.bmp", GL_TEXTURE6, 6 );	// "explosion" texture
-
+	SetTextureBinding( "TropicalFish02.bmp", GL_TEXTURE8, 8 );	// "explosion" texture
+	SetTextureBinding( "TropicalFish04.bmp", GL_TEXTURE9, 9 );
+	SetTextureBinding( "explode.bmp", GL_TEXTURE10, 10 );
+	SetTextureBinding( "Fence_Mask.bmp", GL_TEXTURE11, 11 );
 	return bNoErrors;
 }
 
@@ -987,11 +984,7 @@ bool SetUpTextures(void)
 		std::cout << "Couldn't load texture." << std::endl;
 		bItsAllGoodMan = false;
 	}
-	if ( ! ::g_pTheTextureManager->Create2DTextureFromBMPFile("ttt-03_square_powOf2.bmp", true) )
-	{
-		std::cout << "Couldn't load texture." << std::endl;
-		bItsAllGoodMan = false;
-	}
+
 
 	if ( ! ::g_pTheTextureManager->Create2DTextureFromBMPFile("BlueWhale.bmp", true) )
 	{
@@ -1005,25 +998,16 @@ bool SetUpTextures(void)
 		bItsAllGoodMan = false;
 	}
 
-	// These are pure white and black textures.
-	// It may seem pointless to load these, but bear with me... 
-	if ( ! ::g_pTheTextureManager->Create2DTextureFromBMPFile("WhiteSquare128x128.bmp", true) )
-	{
-		std::cout << "Couldn't load texture." << std::endl;
-		bItsAllGoodMan = false;
-	}
-	if ( ! ::g_pTheTextureManager->Create2DTextureFromBMPFile("BlackSquare128x128.bmp", true) )
-	{
-		std::cout << "Couldn't load texture." << std::endl;
-		bItsAllGoodMan = false;
-	}
-
 	if ( ! ::g_pTheTextureManager->Create2DTextureFromBMPFile("TropicalFish01.bmp", true) )
 	{
 		std::cout << "Couldn't load texture." << std::endl;
 		bItsAllGoodMan = false;
 	}
-
+	if ( ! ::g_pTheTextureManager->Create2DTextureFromBMPFile("TropicalFish02.bmp", true) )
+	{
+		std::cout << "Couldn't load texture." << std::endl;
+		bItsAllGoodMan = false;
+	}
 	// For the "fireball" thingy...
 	if ( ! ::g_pTheTextureManager->Create2DTextureFromBMPFile("TropicalFish03.bmp", true) )	// <--- mask image
 	{
@@ -1035,8 +1019,26 @@ bool SetUpTextures(void)
 		std::cout << "Couldn't load texture." << std::endl;
 		bItsAllGoodMan = false;
 	}
-
-
+	if (!::g_pTheTextureManager->Create2DTextureFromBMPFile("TropicalFish04.bmp", true))	// <--- "explosion" texture
+	{
+		std::cout << "Couldn't load texture." << std::endl;
+		bItsAllGoodMan = false;
+	}
+	if (!::g_pTheTextureManager->Create2DTextureFromBMPFile("explode.bmp", true))	// <--- "explosion" texture
+	{
+		std::cout << "Couldn't load texture." << std::endl;
+		bItsAllGoodMan = false;
+	}
+	if (!::g_pTheTextureManager->Create2DTextureFromBMPFile("ttt-03_square_powOf2.bmp", true))	// <--- "explosion" texture
+	{
+		std::cout << "Couldn't load texture." << std::endl;
+		bItsAllGoodMan = false;
+	}
+	if (!::g_pTheTextureManager->Create2DTextureFromBMPFile("Fence_Mask.bmp", true))	// <--- "explosion" texture
+	{
+		std::cout << "Couldn't load texture." << std::endl;
+		bItsAllGoodMan = false;
+	}
 	// Now we set up the sampler uniform locations. 
 	// These are exactly the same as any other uniforms we've used, as they 
 	//  represent a register in the GPU. Note that you CAN'T have sampler 
@@ -1056,6 +1058,10 @@ bool SetUpTextures(void)
 	UniLoc_texSampler2D[5] = glGetUniformLocation(shaderID, "texSamp2D_05" );
 	UniLoc_texSampler2D[6] = glGetUniformLocation(shaderID, "texSamp2D_06" );
 	UniLoc_texSampler2D[7] = glGetUniformLocation(shaderID, "texSamp2D_07" );
+	UniLoc_texSampler2D[8] = glGetUniformLocation(shaderID, "texSamp2D_08" ); //return -1 Y??
+	UniLoc_texSampler2D[9] = glGetUniformLocation(shaderID, "texSamp2D_09" );
+	UniLoc_texSampler2D[10] = glGetUniformLocation(shaderID, "texSamp2D_10" );
+	UniLoc_texSampler2D[11] = glGetUniformLocation(shaderID, "texSamp2D_11" );
 
 	UniLoc_texMix[0] = glGetUniformLocation(shaderID, "textureMixRatios[0]");
 	UniLoc_texMix[1] = glGetUniformLocation(shaderID, "textureMixRatios[1]");
@@ -1065,7 +1071,10 @@ bool SetUpTextures(void)
 	UniLoc_texMix[5] = glGetUniformLocation(shaderID, "textureMixRatios[5]");
 	UniLoc_texMix[6] = glGetUniformLocation(shaderID, "textureMixRatios[6]");
 	UniLoc_texMix[7] = glGetUniformLocation(shaderID, "textureMixRatios[7]");
-
+	UniLoc_texMix[8] = glGetUniformLocation(shaderID, "textureMixRatios[8]");
+	UniLoc_texMix[9] = glGetUniformLocation(shaderID, "textureMixRatios[9]");
+	UniLoc_texMix[10] = glGetUniformLocation(shaderID, "textureMixRatios[10]");
+	UniLoc_texMix[11] = glGetUniformLocation(shaderID, "textureMixRatios[11]");
 
 	ExitOnGLError("ERROR in SetUpTextures().");
 
@@ -1422,7 +1431,7 @@ void DrawObject( cGameObject* pGO )
 void SetUpInitialLightValues(void)
 {
 	// Assume the lights are loaded into the g_vecLights;
-	::g_vecLights[0].position = glm::vec4( 0.0f, 3.0f, 0.0f, 1.0f );
+	::g_vecLights[0].position = glm::vec4( 4.0f, 3.0f, 0.0f, 1.0f );
 	::g_vecLights[0].diffuse =glm::vec4( 1.0f, 1.0f, 1.0f, 1.0f );
 	::g_vecLights[0].ambient =glm::vec4( 0.2f, 0.2f, 0.2f, 1.0f );
 	::g_vecLights[0].specular =glm::vec4( 1.0f, 1.0f, 1.0f, 1.0f );
@@ -1431,19 +1440,19 @@ void SetUpInitialLightValues(void)
 	::g_vecLights[0].attenQuad = 0.1f;
 
 	// Assume the lights are loaded into the g_vecLights;
-	::g_vecLights[1].position = glm::vec4( 0.0f, 3.0f, 0.0f, 1.0f );
-	::g_vecLights[1].diffuse =glm::vec4( 1.0f, 1.0f, 1.0f, 1.0f );
-	::g_vecLights[1].ambient =glm::vec4( 0.2f, 0.2f, 0.2f, 1.0f );
-	::g_vecLights[1].specular =glm::vec4( 1.0f, 1.0f, 1.0f, 1.0f );
-	::g_vecLights[1].attenConst = 0.0f;
-	::g_vecLights[1].attenLinear = 0.2f;
-	::g_vecLights[1].attenQuad = 0.1f;
+	//::g_vecLights[0].position = glm::vec4( 5.0f, 9.6f, -0.7f, 1.0f );
+	//::g_vecLights[0].diffuse = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	//::g_vecLights[0].ambient = glm::vec4(0.2f, 0.2f, 0.2f, 1.0f);
+	//::g_vecLights[0].specular = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	//::g_vecLights[0].attenConst = 0.0f;
+	//::g_vecLights[0].attenLinear = 0.008f;
+	//::g_vecLights[0].attenQuad = 0.05f;
 	
-//	::g_vecLights[1].lightType = 1;	// Spot
-	::g_vecLights[1].lightType = 0;	// point
-	//::g_vecLights[1].direction = glm::vec4(0.0f, -1.0f, 0.0f, 1.0f);
-	//::g_vecLights[1].anglePenumbraStart = 15.0f;
-	//::g_vecLights[1].anglePenumbraEnd = 60.0f;
+	//::g_vecLights[0].lightType = 0;	// Spot
+	::g_vecLights[0].lightType = 0;	// point
+	//::g_vecLights[0].direction = glm::vec4(0.0f, -1.0f, 0.0f, 1.0f);
+	//::g_vecLights[0].anglePenumbraStart = 15.0f;
+	//::g_vecLights[0].anglePenumbraEnd = 30.0f;
 }
 
 
@@ -1465,6 +1474,10 @@ void CreateTheObjects(void)
 	::g_pTheMeshManager->LoadPlyIntoVBO("assets/models/TropicalFish05.ply");
 	//something else
 	::g_pTheMeshManager->LoadPlyIntoVBO("assets/models/castleTower.ply");
+
+	//extra
+	::g_pTheMeshManager->LoadPlyIntoVBO("assets/models/TropicalFish02.ply");
+	::g_pTheMeshManager->LoadPlyIntoVBO("assets/models/TropicalFish04.ply");
 
 	//g_pDebugBall = new cGameObject();
 	//g_pDebugBall->modelName = "assets/models/Isoshphere.ply";
@@ -1605,6 +1618,66 @@ void CreateTheObjects(void)
 	// Use texture #0, don't mix with any others
 	pFish7->vecTextureMixRatios[7] = 1.0f;		// fish1
 
+	cGameObject* pFish8 = new cGameObject();
+	pFish8->modelName = "assets/models/TropicalFish02.ply";
+	pFish8->debugColour = glm::vec4(0.2f, 0.0f, 0.0f, 1.0f);
+	pFish8->diffuse = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	pFish8->ambient = glm::vec4(0.2f, 0.2f, 0.2f, 1.0f);
+	pFish8->specular = glm::vec3(1.0f, 1.0f, 1.0f);
+	pFish8->scale = 3.1f;
+	pFish8->position.z = -2.0f;
+	pFish8->position.x = 7.5f;
+	pFish8->position.y = 4.0f;
+	pFish8->bUseTexturesAsMaterials = true;
+	pFish8->ClearTextureMixValues(NUMBEROF2DSAMPLERS, 0.0f);
+	// Use texture #0, don't mix with any others
+	pFish8->vecTextureMixRatios[8] = 1.0f;		// fish1
+
+	cGameObject* pFish9 = new cGameObject();
+	pFish9->modelName = "assets/models/TropicalFish04.ply";
+	pFish9->debugColour = glm::vec4(0.2f, 0.0f, 0.0f, 1.0f);
+	pFish9->diffuse = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	pFish9->ambient = glm::vec4(0.2f, 0.2f, 0.2f, 1.0f);
+	pFish9->specular = glm::vec3(1.0f, 1.0f, 1.0f);
+	pFish9->scale = 3.1f;
+	pFish9->position.z = -2.0f;
+	pFish9->position.x = 0.5f;
+	pFish9->position.y = 5.0f;
+	pFish9->bUseTexturesAsMaterials = true;
+	pFish9->ClearTextureMixValues(NUMBEROF2DSAMPLERS, 0.0f);
+	// Use texture #0, don't mix with any others
+	pFish9->vecTextureMixRatios[9] = 1.0f;		// fish1
+
+	cGameObject* pFish10 = new cGameObject();
+	pFish10->modelName = "assets/models/TropicalFish04.ply";
+	pFish10->debugColour = glm::vec4(0.2f, 0.0f, 0.0f, 1.0f);
+	pFish10->diffuse = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	pFish10->ambient = glm::vec4(0.2f, 0.2f, 0.2f, 1.0f);
+	pFish10->specular = glm::vec3(1.0f, 1.0f, 1.0f);
+	pFish10->scale = 3.1f;
+	pFish10->position.z = -2.0f;
+	pFish10->position.x = 4.5f;
+	pFish10->position.y = 5.0f;
+	pFish10->bUseTexturesAsMaterials = true;
+	pFish10->ClearTextureMixValues(NUMBEROF2DSAMPLERS, 0.0f);
+	// Use texture #0, don't mix with any others
+	pFish10->vecTextureMixRatios[10] = 1.0f;		// fish1
+
+	cGameObject* pFish11 = new cGameObject();
+	pFish11->modelName = "assets/models/TropicalFish04.ply";
+	pFish11->debugColour = glm::vec4(0.2f, 0.0f, 0.0f, 1.0f);
+	pFish11->diffuse = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
+	pFish11->ambient = glm::vec4(0.2f, 0.2f, 0.2f, 1.0f);
+	pFish11->specular = glm::vec3(1.0f, 1.0f, 1.0f);
+	pFish11->scale = 3.1f;
+	pFish11->position.z = -2.0f;
+	pFish11->position.x = 8.5f;
+	pFish11->position.y = 0.0f;
+	pFish11->bUseTexturesAsMaterials = true;
+	pFish11->ClearTextureMixValues(NUMBEROF2DSAMPLERS, 0.0f);
+	// Use texture #0, don't mix with any others
+	pFish11->vecTextureMixRatios[11] = 1.0f;		// fish1
+
 	cGameObject* pRock1 = new cGameObject();
 	pRock1->modelName = "assets/models/asteroid_sc0001.ply";
 	pRock1->debugColour = glm::vec4(0.2f, 0.0f, 0.0f, 1.0f);
@@ -1633,7 +1706,7 @@ void CreateTheObjects(void)
 	pRock2->scale = 0.3f;
 	pRock2->position.z = -5.0f;
 	pRock2->position.x = 3.5f;
-	pRock2->position.y = -6.0f;
+	pRock2->position.y = -5.0f;
 	pRock2->bUseTexturesAsMaterials = true;
 	pRock2->ClearTextureMixValues(NUMBEROF2DSAMPLERS, 0.0f);
 	// Use texture #0, don't mix with any others
@@ -1671,7 +1744,7 @@ void CreateTheObjects(void)
 	pPlant1->scale = 0.3f;
 	pPlant1->position.z = -2.0f;
 	pPlant1->position.x = 6.5f;
-	pPlant1->position.y = -3.0f;
+	pPlant1->position.y = -3.4f;
 	pPlant1->bUseTexturesAsMaterials = true;
 	pPlant1->ClearTextureMixValues(NUMBEROF2DSAMPLERS, 0.0f);
 	// Use texture #0, don't mix with any others
@@ -1690,7 +1763,7 @@ void CreateTheObjects(void)
 	pPlant2->scale = 3.3f;
 	pPlant2->position.z = -2.0f;
 	pPlant2->position.x = -3.5f;
-	pPlant2->position.y = -6.0f;
+	pPlant2->position.y = -5.0f;
 	pPlant2->bUseTexturesAsMaterials = true;
 	pPlant2->ClearTextureMixValues(NUMBEROF2DSAMPLERS, 0.0f);
 	// Use texture #0, don't mix with any others
@@ -1710,6 +1783,9 @@ void CreateTheObjects(void)
 	pTankFloor->position.z = -2.0f;
 	pTankFloor->position.x = -1.6f;
 	pTankFloor->position.y = -5.3f;
+	pTankFloor->bUseTexturesAsMaterials = true;
+	pTankFloor->ClearTextureMixValues(NUMBEROF2DSAMPLERS, 0.0f);
+	pTankFloor->vecTextureMixRatios[2] = 1.0f;
 
 	cGameObject* pTankFloor2 = new cGameObject();
 	pTankFloor2->modelName = "assets/models/tankGround.ply";
@@ -1721,6 +1797,9 @@ void CreateTheObjects(void)
 	pTankFloor2->position.z = -2.0f;
 	pTankFloor2->position.x = 8.0f;
 	pTankFloor2->position.y = -5.3f;
+	pTankFloor2->bUseTexturesAsMaterials = true;
+	pTankFloor2->ClearTextureMixValues(NUMBEROF2DSAMPLERS, 0.0f);
+	pTankFloor2->vecTextureMixRatios[2] = 1.0f;
 
 	cGameObject* pTankGlass = new cGameObject();
 	pTankGlass->modelName = "assets/models/tankGlass.ply";
@@ -1825,6 +1904,10 @@ void CreateTheObjects(void)
 	::g_vec_pGOs.push_back(pFish5);
 	::g_vec_pGOs.push_back(pFish6);
 	::g_vec_pGOs.push_back(pFish7);
+	::g_vec_pGOs.push_back(pFish8);
+	::g_vec_pGOs.push_back(pFish9);
+	::g_vec_pGOs.push_back(pFish10);
+	::g_vec_pGOs.push_back(pFish11);
 
 	::g_vec_pGOs.push_back(pCastle);
 
